@@ -1,17 +1,22 @@
-import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
+import React, { useState } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
+  const [ip, setIp] = useState("Descobrindo seu ip...");
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to React Native!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
+      <View style={styles.body}>
+        <Text style={styles.bgiTitle}>MEU IP</Text>
+        <View>
+          <Text>{ip}</Text>
+        </View>
+        <View style={styles.btn}>
+          <Button title="Descobrir meu Ip !" />
+        </View>
+      </View>
+      <View style={styles.footer}>
+        <Text style={styles.title}>Feito por: Gabriel Rabelo 🚀</Text>
+      </View>
     </View>
   );
 }
@@ -19,18 +24,31 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#2f2336",
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  body: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  bgiTitle: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: "white",
+    marginBottom: 20,
+  },
+  title: {
+    color: "white",
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  btn: {
+    color: "white",
+    backgroundColor: "white",
+  },
+  footer: {
+    marginBottom: 25,
   },
 });
