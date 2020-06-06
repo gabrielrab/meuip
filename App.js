@@ -1,18 +1,35 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Alert, Button, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   const [ip, setIp] = useState("Descobrindo seu ip...");
+  const [ipBox, setIpBox] = useState(false);
+
+  const resultIp = () => {
+    return Alert.alert("Ip encontrado!", "192.168.0.10", [
+      { text: "Valeu !", onPress: () => setIpBox(false) },
+    ]);
+  };
+
+  const handleFindIp = () => {
+    setIpBox(true);
+    return resultIp();
+  };
   return (
     <View style={styles.container}>
       <View style={styles.body}>
         <Text style={styles.bgiTitle}>MEU IP</Text>
-        <View>
-          <Text>{ip}</Text>
-        </View>
-        <View style={styles.btn}>
-          <Button title="Descobrir meu Ip !" />
-        </View>
+        {ipBox ? (
+          <View>
+            <Text style={styles.title}>{ip}</Text>
+          </View>
+        ) : (
+          <>
+            <View style={styles.btn}>
+              <Button title="Descobrir meu Ip !" onPress={handleFindIp} />
+            </View>
+          </>
+        )}
       </View>
       <View style={styles.footer}>
         <Text style={styles.title}>Feito por: Gabriel Rabelo 🚀</Text>
