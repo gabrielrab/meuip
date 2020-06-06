@@ -5,15 +5,17 @@ export default function App() {
   const [ip, setIp] = useState("Descobrindo seu ip...");
   const [ipBox, setIpBox] = useState(false);
 
-  const resultIp = () => {
-    return Alert.alert("Ip encontrado!", "192.168.0.10", [
+  const resultIp = (ip) => {
+    return Alert.alert("Ip encontrado!", `${ip}`, [
       { text: "Valeu !", onPress: () => setIpBox(false) },
     ]);
   };
 
-  const handleFindIp = () => {
+  const handleFindIp = async () => {
+    const response = await fetch("http://httpbin.org/ip");
+    const data = await response.json();
     setIpBox(true);
-    return resultIp();
+    return resultIp(data.origin);
   };
   return (
     <View style={styles.container}>
